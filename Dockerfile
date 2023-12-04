@@ -11,7 +11,7 @@ COPY gradlew .
 COPY gradle ./gradle
 
 # Download and cache the Gradle dependencies
-RUN ./gradlew --no-daemon --console=plain dependencies
+#RUN ./gradlew --no-daemon --console=plain dependencies
 
 # Copy the application source code
 COPY . .
