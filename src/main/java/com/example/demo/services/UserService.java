@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import com.example.demo.entities.User;
 import com.example.demo.models.SignUpRequest;
+import com.example.demo.models.UserRole;
 import com.example.demo.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,7 +24,7 @@ public class UserService {
         u.setEmail(signUpRequest.getEmail());
         u.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
         u.setUsername(signUpRequest.getUsername());
-        u.setRole("USER");
+        u.setRole(UserRole.ROLE_USER);
         return  userRepository.save(u);
     }
 
@@ -37,5 +38,12 @@ public class UserService {
 
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public User changeRole(String email, UserRole userRole) {
+        User user = userRepository.findByEmail(email).orElseThrow();
+        user.setRole(userRole);
+        userRepository.save(user);
+        return user;
     }
 }

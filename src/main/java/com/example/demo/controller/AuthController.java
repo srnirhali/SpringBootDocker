@@ -4,14 +4,10 @@ import com.example.demo.entities.User;
 import com.example.demo.models.LoginRequest;
 import com.example.demo.models.LoginResponse;
 import com.example.demo.models.SignUpRequest;
-import com.example.demo.security.UserPrinciple;
 import com.example.demo.services.AuthService;
 import com.example.demo.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -37,10 +33,6 @@ public class AuthController {
         return ResponseEntity.ok(u);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/details")
-    public ResponseEntity<UserPrinciple> login(@AuthenticationPrincipal UserPrinciple userPrinciple)
-    {
-        return ResponseEntity.ok(userPrinciple);
-    }
+
+
 }

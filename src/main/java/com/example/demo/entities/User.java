@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import com.example.demo.models.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -24,8 +25,8 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
 
 }
